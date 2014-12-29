@@ -3,25 +3,27 @@ layout: post
 title:  Java String类源码解析（一）
 category: java
 date: 2014-12-10
+
 ---
 
 # JAVA String类源码解析（一）
 
-标签（空格分隔）： java
 
----
 ## PASS.1 不可改变的String ?
-###众所周知java中的String对象时不可改变的， 实际中我们经常做类似于**String a = "abc" + new String(b) ;** 的操作， 实际上都是创建了一个全新的String对象， 这个新的对象包含了修改后的字符串内容。 下面来看看**String**构造函数
-    
+
+###众所周知java中的String对象时不可改变的， 实际中我们经常做类似于**String a = "abc" + new String(b) ;** 的操作， 实际上都是创建了一个全新的String对象， 这个新的对象包含了修改后的字符串内容。 下面来看看**String**构造函数.
+
 {% highlight java %}
     public final class String 
         implements java.io.Serializable, Comparable<String>, CharSequence {
-         private final char value[];
+            private final char value;
          private int hash; // Default to 0
     }
 {% endhighlight %}
 
+
 <!-- more -->
+
 ###从上面的代码中，我们可以看出String的本质就是char[]， 然而这个字符数组被**final**关键字修饰， 那么问题就来了， **final**是个么？
 > **补充**： **final**关键字的几个意义：
     1. 如果final修饰类的话， 那么这个类是不能被继承的。
