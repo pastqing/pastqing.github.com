@@ -136,6 +136,7 @@ public static void main(String[] args) {
     //可以看出， 构造的思路很简单， 但是必须要考虑的很全面。 像以前写c++时， 要考虑一个类能不能被复制， 赋值， 等等情况。
 {% endhighlight %}
 ##PASS.4 equals还是==？
+
 ###初学java者在比较字符串时， 常常容易混淆equals和==的不同。 下面我们讲一下两者的不同。首先来看个例子：
 {% highlight java %}
 public static void main(String[] args) {
@@ -179,8 +180,10 @@ public static void main(String[] args) {
     }
 {% endhighlight %}
 ###看源码的好处就是， 能看到优雅的代码， 清晰的思路， 全面的考虑。比如里面的while语句。 以前读c++的源码的时候， 就会发现里面每个函数小算法都实现的很精美， 往往几行搞定， 效率很高。总结来说java String 的实现就是对字符数组的各种操作， 这样就可以写自己的String类了。
+
 ### 下面解释jvm对String的处理， 这里我参考了小学徒的成长历程的博文
 > String a = "Hello World" ;
+
 ###如上，字符串a是常量， 同时String是不可改变的， 因此我们可以共享这个常量。 为了提高效率， 节省资源就有了常量池这个东西。常量池的一个作用就是存放**编译期间**生产的各种字面值常量和引用。同时根据jvm的垃圾回收机制吧， 在这个常量区中的对象基本不会被回收的。看下面的例子：
 {% highlight java %}
     public static void main(String [] args ){ 
@@ -204,6 +207,7 @@ public static void main(String[] args) {
 
 {% endhighlight %}
 ####**ldc**指的是将常量值从常量池中拿出并且压入栈中， 可以看出第3 、6行取出的是同一个常量值， 这说明了，**在编译期间，该字符串变量的值已经确定了下来，并且将该字符串值缓存在缓冲区中，同时让该变量指向该字符串值，后面如果有使用相同的字符串值，则继续指向同一个字符串值**
+
 ###不过， 一旦使用了变量或者调用了方法， 那就不一样了。 看下面的例子：
 {% highlight java %}
       public static void main(String [] args ){ 
@@ -226,11 +230,6 @@ public static void main(java.lang.String[]);
 }
 {% endhighlight %}
 ###从上面可以看出， 从常量区中拿出来放到栈中， 再从栈中拿出来， 然后调用String的一个构造函数， 通过关键字new进行创建对象， 然后将新的引用赋给b。 从这也能看出来用这种构造函数初始化一个字符串， 效率是不高的， 我们尽量少用。
-
-
-
-
-
 
 
 
