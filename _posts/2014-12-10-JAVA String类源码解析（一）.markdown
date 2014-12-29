@@ -50,7 +50,8 @@ public static void main(String[] args) {
 
 ###以上也就解决了， 为啥String是不可改变的问题。 String里面的成员变量是私有的而且被**final**修饰， 因此对String本身是无法改变的， 只能重新new一个出来了。。。其实想改变还是有办法的， 只要想办法访问私有变量value就行， 至于怎么访问， 需要用的java中的**反射技术**了， 以后再谈
 
-## PASS.2 警惕toString()无意识的递归
+## PASS.2 警惕toString()无意识的递归 
+
 ###这里我完全引用一下thinking in java 中的例子：
 {% highlight java %}
     /*
