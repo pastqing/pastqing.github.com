@@ -16,7 +16,7 @@ date: 2014-12-10
 {% highlight java %}
     public final class String 
         implements java.io.Serializable, Comparable<String>, CharSequence {
-            private final char value;
+            private final char value[];
          private int hash; // Default to 0
     }
 {% endhighlight %}
